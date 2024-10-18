@@ -1,7 +1,8 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 
 function Income() {
-  return <h2>Income</h2>;
+  return <Typography variant="h2">Income</Typography>;
 }
 
 export default Income;
