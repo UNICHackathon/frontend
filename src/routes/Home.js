@@ -1,26 +1,27 @@
 import React from 'react';
-import { Box, Typography, List, ListItem, Link } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
+
+import Layout from '@components/Layout';
 
 function Home() {
   return (
-    <Box display="flex">
-      <Box flex={1}>
-        <Typography variant="h4">Home</Typography>
-        <nav>
-          <List>
-            <ListItem>
-              <Link href="/income">Income</Link>
-            </ListItem>
-            <ListItem>
-              <Link href="/spending">Spending</Link>
-            </ListItem>
-          </List>
-        </nav>
+    <Layout>
+      <Box display="flex">
+        <Box flex={1}>
+          <nav>
+            <Button variant="contained" color="primary" href="/income" sx={{ marginRight: 1 }}>
+              Income
+            </Button>
+            <Button variant="contained" color="primary" href="/spending">
+              Spending
+            </Button>
+          </nav>
+        </Box>
+        <Box width="30%">
+          <Typography variant="h4">My Transactions</Typography>
+        </Box>
       </Box>
-      <Box width="30%">
-        <Typography variant="h4">My Transactions</Typography>
-      </Box>
-    </Box>
+    </Layout>
   );
 }
 

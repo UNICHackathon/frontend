@@ -1,8 +1,14 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 
+import Layout from '@components/Layout';
+
 function Spending() {
-  return <Typography variant="h2">Spending</Typography>;
+  return (
+    <Layout>
+      <Typography variant="h4">Spending</Typography>
+    </Layout>
+  );
 }
 
 export default Spending;

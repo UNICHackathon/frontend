@@ -12,7 +12,10 @@ function Login() {
         minHeight="100vh"
       >
         <Typography variant="h4" component="h1" gutterBottom>
-          Login
+          Welcome Back
+        </Typography>
+        <Typography variant="body1" color="textSecondary" gutterBottom>
+          Please enter your credentials to login.
         </Typography>
         <TextField
           label="Email"
@@ -35,6 +38,15 @@ function Login() {
           style={{ marginTop: '16px' }}
         >
           Login
+        </Button>
+        <Button
+          variant="text"
+          color="primary"
+          size="small"
+          fullWidth
+          style={{ marginTop: '8px' }}
+        >
+          Forgot Password?
         </Button>
       </Box>
     </Container>
