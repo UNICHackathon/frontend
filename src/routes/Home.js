@@ -1,24 +1,37 @@
+/** @jsxImportSource @emotion/react */
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { css } from '@emotion/react';
+import { Box, Typography, Button, Container } from '@mui/material';
 
 import Layout from '@components/Layout';
+import Balance from "@components/Balance";
 
 function Home() {
   return (
     <Layout>
       <Box display="flex">
-        <Box flex={1}>
-          <nav>
-            <Button variant="contained" color="primary" href="/income" sx={{ marginRight: 1 }}>
+        <Container>
+          <Typography variant="h4">Good morning, John!</Typography>
+          <nav css={css`
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+          `}>
+            <Button variant="contained" color="primary" href="/income">
               Income
             </Button>
             <Button variant="contained" color="primary" href="/spending">
               Spending
             </Button>
           </nav>
-        </Box>
+          <Box sx={{ mt: 2 }}>
+            <Balance
+              balance={25000}
+            />
+          </Box>
+        </Container>
         <Box width="30%">
-          <Typography variant="h4">My Transactions</Typography>
+          <Typography variant="h5">My Transactions</Typography>
         </Box>
       </Box>
     </Layout>

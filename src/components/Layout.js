@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, AppBar, Toolbar, Typography } from '@mui/material';
+import { Box, Container, AppBar, Toolbar } from '@mui/material';
 
 function Layout({ children }) {
   return (
@@ -10,10 +10,13 @@ function Layout({ children }) {
         position="static"
       >
         <Toolbar>
-          <Typography variant="h5">Good morning, John!</Typography>
+          {/*  */}
         </Toolbar>
       </AppBar>
-      <Container>
+      <Container
+        disableGutters
+        maxWidth={false}
+      >
         {children}
       </Container>
     </Box>
