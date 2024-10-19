@@ -103,7 +103,7 @@ function TransactionsDoughnutChart() {
           <Box sx={{ mt: 2 }}>
             {['Expenses', 'Income'].map((el) => (
               <Button
-                key={el} // Added key prop
+                key={el}
                 variant="contained"
                 onClick={() => switchCategory(el)}
                 sx={{
