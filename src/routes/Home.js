@@ -15,6 +15,7 @@ import ExpensesGraph from "@components/ExpensesGraph";
 import Brokerage from "@components/Brokerage";
 import Transactions from "@components/Transactions"
 import Loan from "@components/Loan";
+import TransactionsDoughnutChart from "@components/TransactionsDoughnutChart";
 
 function Home() {
   return (
@@ -92,6 +93,7 @@ function Home() {
               </CardContent>
             </Card>
           </Box>
+          <TransactionsDoughnutChart />
         </Container>
         <Box width="25%">
           <History transactions={[]} />
