@@ -1,6 +1,6 @@
 .chart-container {
   width: 100%;
-  height: 300px; /* Tamaño del gráfico pequeño */
+  height: 300px; 
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

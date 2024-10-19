@@ -1,7 +1,20 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
-import './BarChart.css'; // Asegúrate de incluir tu CSS si es necesario
+import './BarChart.css';
+
+const formatNumber = (num) => {
+    if (num >= 1e12) {
+        return (num / 1e12).toFixed(1) + 'T';
+    } else if (num >= 1e9) {
+        return (num / 1e9).toFixed(1) + 'B';
+    } else if (num >= 1e6) {
+        return (num / 1e6).toFixed(1) + 'M';
+    } else if (num >= 1e3) {
+        return (num / 1e3).toFixed(1) + 'K';
+    }
+    return num;
+};
 
 const BarChart = ({ dataPoints, labels }) => {
     const data = {
@@ -10,8 +23,8 @@ const BarChart = ({ dataPoints, labels }) => {
             {
                 label: 'Monthly Expenses',
                 data: dataPoints,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color de las barras
-                borderColor: 'rgba(75, 192, 192, 1)', // Color del borde de las barras
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
             },
         ],
@@ -22,42 +35,48 @@ const BarChart = ({ dataPoints, labels }) => {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: true,
-                position: 'top',
+                display: false,
+            },
+            tooltip: {
+                callbacks: {
+                    label: (tooltipItem) => {
+                        const value = tooltipItem.raw;
+                        return formatNumber(value);
+                    },
+                },
             },
         },
         scales: {
             x: {
                 ticks: {
-                    display: true, // Mostrar etiquetas en el eje X
+                    display: true,
                 },
                 grid: {
-                    display: false, // Ocultar cuadrícula del eje X
+                    display: false,
                 },
-                // Marcas en el eje X
                 drawTicks: true,
-                tickLength: 10, // Longitud de las marcas en el eje X
-                lineWidth: 2, // Grosor de la línea
-                color: '#000', // Color de la línea
+                tickLength: 10,
+                lineWidth: 2,
+                color: '#000',
             },
             y: {
                 ticks: {
-                    display: true, // Mostrar etiquetas en el eje Y
+                    display: true,
+                    callback: (value) => formatNumber(value),
                 },
                 grid: {
-                    display: false, // Ocultar cuadrícula del eje Y
+                    display: false,
                 },
-                // Marcas en el eje Y
                 drawTicks: true,
-                tickLength: 10, // Longitud de las marcas en el eje Y
-                lineWidth: 2, // Grosor de la línea
-                color: '#000', // Color de la línea
+                tickLength: 10,
+                lineWidth: 2,
+                color: '#000',
             },
         },
     };
 
     return (
-        <div style={{ width: '100%', height: '400px' }}> {/* Ajusta el tamaño según sea necesario */}
+        <div style={{ width: '100%', height: '400px' }}>
             <Bar data={data} options={options} />
         </div>
     );

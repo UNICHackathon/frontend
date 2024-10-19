@@ -7,21 +7,20 @@ import './LinearGraph.css';
 
 Chart.register(ChartAnnotation);
 
-// Función para formatear números a k, M, B, T
 const formatNumber = (num) => {
     if (num >= 1e12) {
-        return (num / 1e12).toFixed(1) + 'T'; // Billones
+        return (num / 1e12).toFixed(1) + 'T';
     } else if (num >= 1e9) {
-        return (num / 1e9).toFixed(1) + 'B'; // Mil millones
+        return (num / 1e9).toFixed(1) + 'B';
     } else if (num >= 1e6) {
-        return (num / 1e6).toFixed(1) + 'M'; // Millones
+        return (num / 1e6).toFixed(1) + 'M';
     } else if (num >= 1e3) {
-        return (num / 1e3).toFixed(1) + 'K'; // Miles
+        return (num / 1e3).toFixed(1) + 'k';
     }
-    return num; // Menos de mil
+    return num;
 };
 
-const LinearChart = ({ dataValues = [], dates = [], chartType }) => {
+const LinearChart = ({ dataValues = [], dates = [], chartType, size }) => {
     const lastValue = dataValues.length > 0 ? dataValues[dataValues.length - 1] : 0;
 
     const data = {
@@ -49,9 +48,9 @@ const LinearChart = ({ dataValues = [], dates = [], chartType }) => {
                 annotations: chartType === 'balance' ? {
                     lastValue: {
                         type: 'label',
-                        xValue: dates[0], // Colocar al inicio del eje X
-                        yValue: Math.max(...dataValues) + 50, // Un punto por encima del valor máximo
-                        content: [`${formatNumber(lastValue)} €`], // Formateo de la última etiqueta
+                        xValue: dates[0],
+                        yValue: Math.max(...dataValues) + 50,
+                        content: [`${(lastValue)} €`],
                         font: {
                             size: 24,
                             weight: 'bold',
@@ -61,8 +60,8 @@ const LinearChart = ({ dataValues = [], dates = [], chartType }) => {
                             y: 'top',
                         },
                         padding: 6,
-                        xAdjust: 10, // Ajustar para que quede pegado al inicio del eje X
-                        yAdjust: -25, // Ajustar para que quede arriba del máximo
+                        xAdjust: 10,
+                        yAdjust: -25,
                     },
                 } : {},
             },
@@ -77,13 +76,13 @@ const LinearChart = ({ dataValues = [], dates = [], chartType }) => {
                     drawTicks: true,
                     tickLength: 5,
                 },
-                min: 0, // Establecer un límite mínimo fijo
-                max: dates.length - 1, // Establecer un límite máximo en base a la cantidad de fechas
+                min: 0,
+                max: dates.length - 1,
             },
             y: {
                 ticks: {
                     display: true,
-                    callback: (value) => formatNumber(value), // Aplicar formato a los ticks del eje Y
+                    callback: (value) => formatNumber(value),
                 },
                 grid: {
                     display: false,
@@ -92,24 +91,19 @@ const LinearChart = ({ dataValues = [], dates = [], chartType }) => {
         },
     };
 
+    // Define el tamaño del contenedor según el argumento size
+    let chartSize;
+    if (size === 'small') {
+        chartSize = { width: '100%', height: '200px' };
+    } else if (size === 'big') {
+        chartSize = { width: '100%', height: '400px' };
+    } else {
+        // Puedes manejar un caso de error si el tamaño no es válido
+        chartSize = { width: '100%', height: '300px' }; // Tamaño por defecto
+    }
+
     return (
-        <div className="chart-container">
-            {chartType === 'balance' && (
-                <div 
-                    style={{
-                        fontFamily: 'Roboto, sans-serif',
-                        fontSize: '20px',
-                        fontWeight: 'bold',
-                        color: '#333',
-                        position: 'absolute',
-                        top: '20px', // Fijo en la parte superior
-                        left: '20px', // Fijo en la izquierda
-                        zIndex: 10,
-                    }}
-                >
-                    {`${formatNumber(lastValue)} €`} {/* Aplicar formato aquí */}
-                </div>
-            )}
+        <div style={chartSize}>
             <Line data={data} options={options} />
         </div>
     );

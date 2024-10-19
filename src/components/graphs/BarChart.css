@@ -1,20 +1,20 @@
 .donut-chart-container {
     display: flex;
-    justify-content: center; /* Centra el gráfico horizontalmente */
-    align-items: center; /* Centra el gráfico verticalmente */
-    padding: 20px; /* Espacio alrededor del gráfico */
-    background-color: #ffffff; /* Fondo blanco */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .chart {
-    max-width: 100%; /* Asegura que el gráfico no exceda el ancho del contenedor */
-    max-height: 400px; /* Ajusta la altura máxima del gráfico */
+    max-width: 100%;
+    max-height: 400px;
 }
 
 h2 {
-    text-align: center; /* Centra el título del gráfico */
-    font-weight: normal; /* Sin negrita */
-    color: #555; /* Color gris para el texto */
+    text-align: center;
+    font-weight: normal;
+    color: #555;
 }
