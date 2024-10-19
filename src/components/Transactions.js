@@ -43,7 +43,7 @@ const Transactions = () => {
         <Box style={{
             margin: "20px",
         }}>
-            <Typography variant="h5">Transactions</Typography>
+            <Typography variant="h5">History</Typography>
             <List
                 sx={{
                     width: '100%',
