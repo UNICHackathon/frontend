@@ -5,16 +5,16 @@ function Balance({ balance, onAddFunds }) {
   return (
     <Card
       sx={{
-        borderRadius: 0,
-        height: 200,
-        width: 250,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}
-      variant="outlined"
+      variant="filled"
     >
       <CardContent sx={{ p: 3 }}>
+        <Typography component="div">
+          Current balance
+        </Typography>
         <Typography variant="h5" component="div">
           ${balance}
         </Typography>
