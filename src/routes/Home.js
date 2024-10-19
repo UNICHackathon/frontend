@@ -13,7 +13,6 @@ import Layout from '@components/Layout';
 import CurrencyConverter from "@components/CurrencyConverter";
 import ExpensesGraph from "@components/ExpensesGraph";
 import Brokerage from "@components/Brokerage";
-import Transactions from "@components/Transactions"
 import Loan from "@components/Loan";
 import TransactionsDoughnutChart from "@components/TransactionsDoughnutChart";
 
@@ -100,7 +99,6 @@ function Home() {
           <CurrencyConverter />
         </Box>
       </Box>
-      <Transactions />
     </Layout>
   );
 }
