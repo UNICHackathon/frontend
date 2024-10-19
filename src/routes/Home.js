@@ -1,17 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { css } from '@emotion/react';
-import { Box, Typography, Button, Container } from '@mui/material';
-
 import Layout from '@components/Layout';
 import Balance from "@components/Balance";
+import { Box, Typography, Button, Container } from '@mui/material';
+import Transactions from "@components/Transactions"
+
 
 function Home() {
   return (
     <Layout>
       <Box display="flex">
         <Container>
-          <Typography variant="h4">Good morning, John!</Typography>
+          <Typography variant="h4">Good morning, John!</Typography> 
           <nav css={css`
             margin-top: 1rem;
             display: flex;
@@ -34,6 +35,7 @@ function Home() {
           <Typography variant="h5">My Transactions</Typography>
         </Box>
       </Box>
+      <Transactions />
     </Layout>
   );
 }
