@@ -26,35 +26,9 @@ function Home() {
           <Brokerage />
         </Box>
         <Container sx={{ width: '50%' }}>
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Search"
-            slotProps={{
-              input: {
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              },
-            }}
-            sx={{
-              backgroundColor: 'white',  // White background
-              borderRadius: '4px',       // Rounded corners if you want
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  border: 'none',        // No border outline
-                },
-                '&:hover fieldset': {
-                  border: 'none',        // No outline on hover
-                },
-                '&.Mui-focused fieldset': {
-                  border: 'none',        // No outline when focused
-                },
-              },
-            }}
-          />
+          <Typography variant="h4" fontSize={24}>
+            Good evening, John! 👋
+          </Typography>
           <ExpensesGraph />
           <Box
             display="flex"
@@ -86,7 +60,7 @@ function Home() {
                 <QrCodeScannerIcon fontSize="large" />
                 <Box sx={{ mt: 'auto' }}>
                   <Typography variant="div">
-                    QR Scanner <EastIcon fontSize="small" />
+                    AI <EastIcon fontSize="small" />
                   </Typography>
                 </Box>
               </CardContent>
