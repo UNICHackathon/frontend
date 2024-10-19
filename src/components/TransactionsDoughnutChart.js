@@ -32,7 +32,7 @@ function TransactionsDoughnutChart() {
     datasets: [
       {
         label: currentCategory,
-        data: currentCategory === 'Expenses' ? [500, 300, 200, 100, 50] : [1000, 500, 300, 200, 100],
+        data: currentCategory === 'Expenses' ? [500, 300, 200, 100, 50] : [1000, 500, 300],
         backgroundColor: colors[currentCategory],
       },
     ],
@@ -103,6 +103,7 @@ function TransactionsDoughnutChart() {
           <Box sx={{ mt: 2 }}>
             {['Expenses', 'Income'].map((el) => (
               <Button
+                key={el} // Added key prop
                 variant="contained"
                 onClick={() => switchCategory(el)}
                 sx={{
@@ -140,6 +141,9 @@ function TransactionsDoughnutChart() {
         </Box>
         <Box sx={{ position: 'relative', width: '200px', height: '200px', display: 'flex', alignItems: 'center' }}>
           <Doughnut data={filteredData} options={options} />
+          <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '20px', fontWeight: 'bold' }}>
+            ${totalSum}
+          </Box>
         </Box>
       </CardContent>
     </Card>
