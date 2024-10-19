@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
+import { css } from '@emotion/react';
+import Transactions from "@components/Transactions"
 import { Box, Typography, Container, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
 import Balance from '@components/Balance';
 import History from '@components/History';
 import Layout from '@components/Layout';
@@ -53,6 +54,7 @@ function Home() {
           <CurrencyConverter />
         </Box>
       </Box>
+      <Transactions />
     </Layout>
   );
 }
