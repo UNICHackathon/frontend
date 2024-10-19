@@ -1,0 +1,17 @@
+.donut-chart-container {
+    position: relative;
+    width: 300px;  /* Ajusta el ancho según necesites */
+    height: 300px; /* Ajusta la altura según necesites */
+    margin: 20px auto; /* Centrando el gráfico y margen */
+}
+
+.donut-label {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar el texto */
+    font-size: 16px; /* Tamaño de texto */
+    font-weight: normal; /* Sin negrita */
+    color: #808080; /* Gris medio */
+    text-align: center;
+}

@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import LinearChart from './components/graphs/LinearGraph.js';
+import BarChart from './components/graphs/BarChart';
+import DonutChart from './components/graphs/DonutChart.js';
 import './App.css';
-
 import Home from '@routes/Home';
 import Income from '@routes/Income';
 import Spending from '@routes/Spending';
@@ -33,6 +34,12 @@ function App() {
         '25/12/2024', '26/12/2024', '27/12/2024', '28/12/2024',
         '29/12/2024', '30/12/2024', '31/12/2024'
     ]} />
+    <DonutChart paidAmount={3000} remainingAmount={7000} />
+    <BarChart 
+    dataPoints={[200, 300, 150, 400, 250]} 
+    labels={['Jan', 'Feb', 'March', 'April', 'May']} 
+/>
+
     </div>
   );
 }

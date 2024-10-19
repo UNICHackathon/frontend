@@ -2,12 +2,12 @@
 .chart-container {
     width: 100%;
     height: 300px; /* Tamaño del gráfico pequeño */
-    background: #f0f4f8; /* Fondo claro */
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    
   }
   
   .chart-container.expanded {

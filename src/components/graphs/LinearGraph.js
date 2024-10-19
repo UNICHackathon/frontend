@@ -15,7 +15,7 @@ const LinearChart = ({ expenses, dates }) => {
         labels: dates, 
         datasets: [ 
             { 
-                label: 'Gastos', 
+                label: 'Expenses', 
                 data: expenses, 
                 fill: true, 
                 backgroundColor: 'rgba(75,192,192,0.2)', 
@@ -25,10 +25,39 @@ const LinearChart = ({ expenses, dates }) => {
         ], 
     }; 
 
-    const options = { 
-        responsive: true, 
-        maintainAspectRatio: false, 
-    }; 
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    display: true, // Mostrar etiquetas en el eje X
+                },
+                grid: {
+                    display: false, // Ocultar cuadrícula del eje X
+                    drawTicks: true, // Dibujar marcas en el eje X
+                    tickLength: 5, // Longitud de las marcas en el eje X
+                },
+            },
+            y: {
+                ticks: {
+                    display: true, // Mostrar etiquetas en el eje Y
+                },
+                grid: {
+                    display: false, // Ocultar cuadrícula del eje Y
+                },
+            },
+        },
+    };
+
+    
+     
 
     return ( 
         <div className="chart-container" onClick={handleClick}> 
