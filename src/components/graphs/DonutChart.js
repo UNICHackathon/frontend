@@ -1,57 +1,79 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
-import ChartDataLabels from 'chartjs-plugin-datalabels'; // Importar el plugin para etiquetas
-import './DonutChart.css'; // Importar el CSS
+import './DonutChart.css'; // Asegúrate de importar tu CSS
 
 const DonutChart = ({ paidAmount, remainingAmount }) => {
-    const totalAmount = paidAmount + remainingAmount; // Calcular la cantidad total
+    const totalAmount = paidAmount + remainingAmount;
+
+    // Función para formatear los números
+    const formatNumber = (num) => {
+        if (num >= 1e12) {
+            return (num / 1e12).toFixed(1) + 'T'; // Trillones
+        }
+        else if (num >= 1e9) {
+            return (num / 1e9).toFixed(1) + 'B'; // Miles de millones
+        }
+        else if (num >= 1e6) {
+            return (num / 1e6).toFixed(1) + 'M'; // Millones
+        }
+        else if (num >= 1e3) {
+            return (num / 1e3).toFixed(1) + 'K'; // Miles
+        }
+        
+        return num.toString(); // Números pequeños
+    };
+
+    const formattedPaidAmount = formatNumber(paidAmount);
+    const formattedTotalAmount = formatNumber(totalAmount);
+    const label = `${formattedPaidAmount}/${formattedTotalAmount}`;
+
+    // Determina el tamaño de fuente basado en la longitud del texto
+    const fontSize = Math.max(12, 16 - label.length * 0.5); // Ajusta la fórmula según sea necesario
 
     const data = {
-        labels: ['Paid', 'Pending'],
+        labels: [
+            `Paid`,   // Etiqueta con formato correcto
+            `Remaining`, // Etiqueta con formato correcto
+        ],
         datasets: [
             {
                 data: [paidAmount, remainingAmount],
-                backgroundColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'], // Azul para pagado, rojo para pendiente
-                hoverBackgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 99, 132, 0.7)'],
+                backgroundColor: ['#FF6384', '#36A2EB'], // Colores rojo y azul
+                hoverBackgroundColor: ['#FF6384', '#36A2EB'],
             },
         ],
+        legend:true
     };
 
     const options = {
-        responsive: true,
-        maintainAspectRatio: false,
         plugins: {
-            legend: {
-                display: true, // Mostrar la leyenda
-                position: 'top', // Colocar la leyenda en la parte superior
-                labels: {
-                    font: {
-                        size: 14, // Tamaño de fuente para la leyenda
-                        color: 'black', // Color de texto para la leyenda
-                    },
-                },
+            datalabels: {
+            display: false, // Ocultar etiquetas en las partes de la dona
             },
             tooltip: {
                 callbacks: {
                     label: (tooltipItem) => {
-                        const label = tooltipItem.label || '';
-                        const value = tooltipItem.raw || 0;
-                        return `${label}: ${value}`;
+                        // Obtiene el valor del tooltipItem
+                        const value = tooltipItem.raw;
+                        // Formatea el valor
+                        return `${formatNumber(value)}`;
                     },
                 },
-            },
-            datalabels: {
-                display: false, // No mostrar etiquetas en los segmentos
             },
         },
     };
 
     return (
-        <div className="donut-chart-container">
-            <Doughnut data={data} options={options} plugins={[ChartDataLabels]} />
-            <div className="donut-label">
-                {`${paidAmount}/${totalAmount}`} {/* Mostrar pagado/total en el centro */}
+        <div style={{ position: 'relative', width: '300px', height: '300px' }}>
+            <Doughnut data={data} options={options} />
+            <div
+                className="donut-label"
+                style={{
+                    fontSize: `${fontSize}px`, // Aplica el tamaño de fuente calculado
+                }}
+            >
+                {label}
             </div>
         </div>
     );
