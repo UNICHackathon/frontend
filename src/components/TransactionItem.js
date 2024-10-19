@@ -4,17 +4,17 @@ import {Typography} from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-// {description, amount, isDebit, currency}
+// {description, amount, isDebit, currency, listType}
 const TransactionItem = (props) => {
     const [isCredit, setIsCredit] = useState(false)
-    console.log(props)
-
- 
+    const [listType, setListType] = useState("full")
 
     useEffect(() => {
         if(props.isDebit === false){
             setIsCredit(true)
         }
+
+        setListType(props.listType)
 
     }, [isCredit])
 
@@ -23,17 +23,16 @@ const TransactionItem = (props) => {
         display:"flex",
         alignItems:"center",
         justifyContent: "space-between",
-        padding: "5px",
+        marginTop:"5px"
     }}>
         <Box style={{
             display:"flex",
             gap:"5px"
         }}>
-            {isCredit ? <ArrowUpwardIcon /> : <ArrowDownwardIcon /> }
             <Typography>{props.description}</Typography>
         </Box>
         <Box >
-            <Typography>{props.currency}{props.amount}</Typography>
+            <Typography>{props.amount} {props.currency}</Typography>
             
         </Box>
     </Box>

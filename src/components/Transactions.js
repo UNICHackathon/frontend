@@ -43,7 +43,7 @@ const Transactions = () => {
         <Box style={{
             margin: "20px",
         }}>
-            <Typography variant="h5">Transactions</Typography>
+            <Typography variant="h5">History</Typography>
             <List
                 sx={{
                     width: '100%',
@@ -64,13 +64,15 @@ const Transactions = () => {
                     }}>
                         {`${date}`}
                     </ListSubheader>
-                        {dateTransactions.map((transaction, index) => (
+                        {dateTransactions.map((transaction) => (
                             <TransactionItem
-                            key={transaction.id}
-                            description={transaction.description || "Credit"}
-                            isDebit={transaction.dcInd? true : false}
-                            amount={transaction.transactionAmount.amount}
-                            currency={transaction.transactionAmount.currency}
+                              key={transaction.id}
+                              description={transaction.description || "Credit"}
+                              isDebit={transaction.dcInd? true : false}
+                              amount={transaction.transactionAmount.amount}
+                              currency={transaction.transactionAmount.currency}
+                              listType={"full"} 
+                              // The "listType" options are either "full" or "mini"
                             />
                         ))}
                     </ul>
