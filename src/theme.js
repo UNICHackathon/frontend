@@ -3,10 +3,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#212121',
+      main: '#fed403',
     },
     secondary: {
-      main: '#fed403',
+      main: '#212121',
     },
   },
   typography: {
@@ -18,13 +18,37 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 10, // Adjust this value to make buttons more rounded
+    borderRadius: 20,
   },
   components: {
+    MuiCard: {
+      defaultProps: {
+        variant: 'filled',
+      },
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'capitalize', // Capitalize the first letter of each word in all buttons
+          boxShadow: 'none',
+          borderRadius: 50,
+          padding: '12px 24px',
+          textTransform: 'capitalize',
+          '&:hover': {
+            boxShadow: 'none',        // Remove shadow on hover
+          },
+          '&:active': {
+            boxShadow: 'none',        // Remove shadow when active (pressed)
+          },
+          '&:focus': {
+            boxShadow: 'none',        // Remove shadow on focus
+          },
         },
       },
     },
