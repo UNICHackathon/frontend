@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income, Expenses, and Profit Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Monthly Income, Expenses, and Profit</h2>
+    <canvas id="myChart" width="800" height="400"></canvas>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar', // Base type of chart
+            data: {
+                labels: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [
+                    {
+                        label: 'Income',
+                        data: [12000, 19000, 15000, 20000, 17000, 25000, 30000, 22000, 21000, 26000, 18000, 30000],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    },
+                    {
+                        label: 'Expenses',
+                        data: [7000, 12000, 9000, 13000, 10000, 16000, 12000, 10000, 11000, 15000, 8000, 16000],
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    },
+                    {
+                        label: 'Profit',
+                        type: 'line', // Change type to line for the profit dataset
+                        data: [5000, 7000, 6000, 7000, 7000, 9000, 18000, 12000, 10000, 11000, 10000, 14000],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 2,
+                        fill: false, // Disable filling under the line
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Amount ($)',
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            }
+        });
+    </script>
+</body>
+</html>
