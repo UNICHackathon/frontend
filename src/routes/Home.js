@@ -14,6 +14,7 @@ import CurrencyConverter from "@components/CurrencyConverter";
 import ExpensesGraph from "@components/ExpensesGraph";
 import Brokerage from "@components/Brokerage";
 import Transactions from "@components/Transactions"
+import Loan from "@components/Loan";
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
       <Box display="flex" width="100%">
         <Box width="25%">
           <Balance balance={25000} />
+          <Loan />
           <Brokerage />
         </Box>
         <Container sx={{ width: '50%' }}>

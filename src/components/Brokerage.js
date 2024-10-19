@@ -14,8 +14,8 @@ function Brokerage({ transactions }) {
         </Typography>
       </CardContent>
       <CardContent sx={{ px: 3, py: 0 }}>
-        <Typography component="div">
-          $0.00
+        <Typography variant="h5" component="div">
+          $ 0.00
         </Typography>
       </CardContent>
       <CardContent sx={{ p: 3 }}>
