@@ -84,3 +84,5 @@ Start the server:
 ```
 node server.js
 ```
+URL to test enpoints:
+https://ae03-212-31-102-105.ngrok-free.app
