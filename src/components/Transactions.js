@@ -66,11 +66,13 @@ const Transactions = () => {
                     </ListSubheader>
                         {dateTransactions.map((transaction, index) => (
                             <TransactionItem
-                            key={transaction.id}
-                            description={transaction.description || "Credit"}
-                            isDebit={transaction.dcInd? true : false}
-                            amount={transaction.transactionAmount.amount}
-                            currency={transaction.transactionAmount.currency}
+                              key={transaction.id}
+                              description={transaction.description || "Credit"}
+                              isDebit={transaction.dcInd? true : false}
+                              amount={transaction.transactionAmount.amount}
+                              currency={transaction.transactionAmount.currency}
+                              listType={"full"} 
+                              // The "listType" options are either "full" or "mini"
                             />
                         ))}
                     </ul>

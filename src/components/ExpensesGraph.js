@@ -5,12 +5,8 @@ function ExpensesGraph() {
   return (
     <Card
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
         mt: 3,
       }}
-      variant="filled"
     >
       <CardContent sx={{ p: 3 }}>
         <Typography component="div">
