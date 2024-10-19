@@ -64,7 +64,7 @@ const Transactions = () => {
                     }}>
                         {`${date}`}
                     </ListSubheader>
-                        {dateTransactions.map((transaction, index) => (
+                        {dateTransactions.map((transaction) => (
                             <TransactionItem
                               key={transaction.id}
                               description={transaction.description || "Credit"}

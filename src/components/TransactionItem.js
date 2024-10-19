@@ -8,7 +8,6 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 const TransactionItem = (props) => {
     const [isCredit, setIsCredit] = useState(false)
     const [listType, setListType] = useState("full")
-    console.log(props)
 
     useEffect(() => {
         if(props.isDebit === false){
@@ -24,17 +23,16 @@ const TransactionItem = (props) => {
         display:"flex",
         alignItems:"center",
         justifyContent: "space-between",
-        padding: "5px",
+        marginTop:"5px"
     }}>
         <Box style={{
             display:"flex",
             gap:"5px"
         }}>
-            {isCredit ? <ArrowUpwardIcon /> : <ArrowDownwardIcon /> }
             <Typography>{props.description}</Typography>
         </Box>
         <Box >
-            <Typography>{props.currency}{props.amount}</Typography>
+            <Typography>{props.amount} {props.currency}</Typography>
             
         </Box>
     </Box>
