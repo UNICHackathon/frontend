@@ -1,18 +1,77 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box } from '@mui/material';
-import MiniTransactionList from './MiniTransactionList';
-import Transactions from './Transactions';
+import {
+  Card,
+  CardContent,
+  Typography,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  List,
+} from '@mui/material';
+import EastIcon from "@mui/icons-material/East";
 
-function History({ transactions }) {
+const transactions = [
+  {
+    id: 1,
+    logo: 'https://via.placeholder.com/40',
+    placeName: 'Starbucks',
+    date: '2023-10-01',
+    amount: '$5.00',
+  },
+  {
+    id: 2,
+    logo: 'https://via.placeholder.com/40',
+    placeName: 'Amazon',
+    date: '2023-10-02',
+    amount: '$50.00',
+  },
+  {
+    id: 3,
+    logo: 'https://via.placeholder.com/40',
+    placeName: 'Walmart',
+    date: '2023-10-03',
+    amount: '$30.00',
+  },
+  {
+    id: 4,
+    logo: 'https://via.placeholder.com/40',
+    placeName: 'Apple Store',
+    date: '2023-10-04',
+    amount: '$200.00',
+  },
+  {
+    id: 5,
+    logo: 'https://via.placeholder.com/40',
+    placeName: 'McDonald\'s',
+    date: '2023-10-05',
+    amount: '$10.00',
+  },
+];
+
+function History() {
   return (
     <Card>
-      <CardContent sx={{ p: 3 }}>
-        <Typography variant="h6">
-          History
+      <CardContent sx={{ p: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography component="div">History</Typography>
+        <Typography variant="strong" sx={{ display: 'flex', fontWeight: 700 }}>
+          See all <EastIcon fontSize="small" sx={{ ml: 1 }} />
         </Typography>
       </CardContent>
-      <CardContent sx={{p:3}}>
-        <MiniTransactionList />
+      <CardContent sx={{ p: 3, py: 0 }}>
+        <List sx={{ py: 0 }}>
+          {transactions.map((transaction) => (
+            <ListItem key={transaction.id} sx={{ px: 0 }}>
+              <ListItemAvatar>
+                <Avatar src={transaction.logo} />
+              </ListItemAvatar>
+              <ListItemText
+                primary={transaction.placeName}
+                secondary={`${transaction.date} - ${transaction.amount}`}
+              />
+            </ListItem>
+          ))}
+        </List>
       </CardContent>
     </Card>
   );
