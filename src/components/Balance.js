@@ -12,7 +12,7 @@ function Balance() {
           <b>€57,892.00</b>
         </Typography>
         <Typography color="text.secondary">
-          // list of credit cards
+          
         </Typography>
       </CardContent>
     </Card>
