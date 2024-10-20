@@ -1,9 +1,9 @@
-import React from 'react'; 
+import React from 'react';   
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import ChartAnnotation from 'chartjs-plugin-annotation';
 import { Chart } from 'chart.js';
-import './LinearGraphGenerative.css';
+import './LinearGraph.css';
 
 Chart.register(ChartAnnotation);
 
@@ -20,15 +20,15 @@ const formatNumber = (num) => {
     return num;
 };
 
-const LinearChartGen = ({ actualData = [], predictedData = [], dates = [] }) => {
-    const combinedPredictedData = [actualData[actualData.length - 1], ...predictedData];
+const GenerativeLinearChart = ({ dataValues = [], predictedData = [], dates = [] }) => {
+    const showPrediction = predictedData.length > 0;
 
     const data = {
         labels: dates,
         datasets: [
             {
-                label: 'Actual Data',
-                data: actualData,
+                label: 'Data',
+                data: dataValues,
                 fill: true,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
@@ -36,12 +36,12 @@ const LinearChartGen = ({ actualData = [], predictedData = [], dates = [] }) => 
             },
             {
                 label: 'Prediction',
-                data: [...new Array(actualData.length - 1).fill(null), ...combinedPredictedData],
+                data: showPrediction ? Array(dataValues.length - 1).fill(null).concat(predictedData) : [],
                 fill: true,
                 backgroundColor: 'rgba(192, 192, 192, 0.2)',
                 borderColor: 'rgba(192, 192, 192, 1)',
                 tension: 0.4,
-                borderDash: [5, 5],
+                borderDash: [10, 5], 
             },
         ],
     };
@@ -53,24 +53,20 @@ const LinearChartGen = ({ actualData = [], predictedData = [], dates = [] }) => 
             legend: {
                 display: false,
             },
-            annotation: {
-            },
         },
         scales: {
             x: {
                 ticks: {
                     display: true,
-                    autoSkip: false,  
-                    maxRotation: 60, 
-                    minRotation: 60, 
+                    autoSkip: false,
+                    maxRotation: 60,
+                    minRotation: 60,
                 },
                 grid: {
                     display: false,
                     drawTicks: true,
                     tickLength: 5,
                 },
-                min: 0,
-                max: dates.length - 1,
             },
             y: {
                 ticks: {
@@ -91,4 +87,4 @@ const LinearChartGen = ({ actualData = [], predictedData = [], dates = [] }) => 
     );
 };
 
-export default LinearChartGen;
+export default GenerativeLinearChart;
