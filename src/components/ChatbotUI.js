@@ -92,17 +92,14 @@ function ChatBot({isChatbotOpen, handleCloseChatbot}) {
 
   useEffect(() => {
     if (isChatbotOpen && messages.length === 0) {
-      botReply(`Welcome to our financial chatbot! We're here to help you manage your money and make informed decisions. Here are a few quick financial tips to get you started:
-          
-        1. Save at least 20% of your income: Consistently setting aside a portion of your earnings can help you build a solid financial cushion over time.
+      botReply(`Welcome to our financial chatbot! Here are some quick tips:
 
-        2. Invest in a diversified portfolio: Spread your investments across different asset classes to minimize risk and maximize potential returns.
+1. Save 20% of income
+2. Diversify investments
+3. Build emergency fund
+4. Pay off high-interest debt
 
-        3. Build an emergency fund: Aim to have 3-6 months' worth of living expenses saved to handle unexpected situations like medical emergencies or job loss.
-
-        4. Pay off high-interest debt first: Prioritize paying down loans or credit cards with high-interest rates to save money on interest in the long run.
-
-        How can I assist you in reaching your financial goals today?`, ['I need more financial advice', 'I want to buy something']);
+How can I assist you today?`, ['I need more financial advice', 'I want to buy something']);
     }
   }, [isChatbotOpen, messages]);
 
