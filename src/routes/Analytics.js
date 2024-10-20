@@ -13,6 +13,7 @@ import {
 import { Search, ArrowBack, ArrowForward, MoreVert } from '@mui/icons-material';
 
 import Layout from '@components/Layout';
+import ExpensesGraph from '@components/ExpensesGraph';
 
 function Analytics() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -31,47 +32,12 @@ function Analytics() {
       <Box display="flex" flexDirection="column" alignItems="center">
         <Container>
           <Typography variant="h4">Analytics</Typography>
-          <Box display="flex" alignItems="center" mt={2} width="100%">
-            <TextField
-              variant="outlined"
-              placeholder="Find any events and operations"
-              fullWidth
-              sx={{ ml: 2 }}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <ButtonGroup variant="contained">
-                        <IconButton>
-                          <ArrowBack />
-                        </IconButton>
-                        <IconButton onClick={handleMenuClick}>
-                          <MoreVert />
-                        </IconButton>
-                        <Menu
-                          anchorEl={anchorEl}
-                          open={open}
-                          onClose={handleMenuClose}
-                        >
-                          <MenuItem onClick={handleMenuClose}>Option 1</MenuItem>
-                          <MenuItem onClick={handleMenuClose}>Option 2</MenuItem>
-                          <MenuItem onClick={handleMenuClose}>Option 3</MenuItem>
-                        </Menu>
-                        <IconButton>
-                          <ArrowForward />
-                        </IconButton>
-                      </ButtonGroup>
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Search />
-                    </InputAdornment>
-                  )
-                }
-              }}
-            />
-          </Box>
+          <ExpensesGraph 
+            size="large"  // options are "small" or "large"
+            ContainerStyles={{
+              height:"75vh"
+            }}
+          />
         </Container>
       </Box>
     </Layout>
