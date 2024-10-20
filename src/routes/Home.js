@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, {useState, usEffect} from 'react';
+import React, {useState, usEffect, useEffect} from 'react';
 import { Box, Typography, Container, TextField, InputAdornment, Card, CardContent } from '@mui/material';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -17,9 +17,26 @@ import TransactionsDoughnutChart from "@components/TransactionsDoughnutChart";
 import ChatBot from '@components/ChatbotUI';
 
 function Home() {
+  const [account, setAccount] = useState({});
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const handleOpenChatbot = () => setIsChatbotOpen(true);
   const handleCloseChatbot = () => setIsChatbotOpen(false);
+
+  function getAccount() {
+    fetch('https://bfea1b40956be8dc5a6750d0421ff902.serveo.net/customer/details/351012345671', {
+      method: 'GET',
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      },
+    })
+      .then(response => response.json())
+      .then(data => setAccount(data))
+      .catch(error => console.error('Error:', error));
+  }
+
+  useEffect(() => {
+    getAccount();
+  }, []);
 
   return (
     <Layout>
@@ -31,7 +48,7 @@ function Home() {
         </Box>
         <Container sx={{ width: '50%' }}>
           <Typography variant="h4" fontSize={24}>
-            Evening, Lia!
+            Evening, {account.accountAlias}!
           </Typography>
           <ExpensesGraph />
           <Box
