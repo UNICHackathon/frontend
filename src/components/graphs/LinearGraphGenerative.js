@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import ChartAnnotation from 'chartjs-plugin-annotation';
 import { Chart } from 'chart.js';
-import './LinearGraph.css';
+import './LinearGraphGenerative.css';
 
 Chart.register(ChartAnnotation);
 
@@ -20,17 +20,28 @@ const formatNumber = (num) => {
     return num;
 };
 
-const LinearChart = ({ dataValues = [], dates = [] }) => {
+const LinearChartGen = ({ actualData = [], predictedData = [], dates = [] }) => {
+    const combinedPredictedData = [actualData[actualData.length - 1], ...predictedData];
+
     const data = {
         labels: dates,
         datasets: [
             {
-                label: 'Data',
-                data: dataValues,
+                label: 'Actual Data',
+                data: actualData,
                 fill: true,
-                backgroundColor: 'rgba(75,192,192,0.2)',
-                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 tension: 0.4,
+            },
+            {
+                label: 'Prediction',
+                data: [...new Array(actualData.length - 1).fill(null), ...combinedPredictedData],
+                fill: true,
+                backgroundColor: 'rgba(192, 192, 192, 0.2)',
+                borderColor: 'rgba(192, 192, 192, 1)',
+                tension: 0.4,
+                borderDash: [5, 5],
             },
         ],
     };
@@ -40,7 +51,7 @@ const LinearChart = ({ dataValues = [], dates = [] }) => {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false
+                display: false,
             },
             annotation: {
             },
@@ -49,9 +60,9 @@ const LinearChart = ({ dataValues = [], dates = [] }) => {
             x: {
                 ticks: {
                     display: true,
-                    autoSkip: false, 
-                    maxRotation: 60,
-                    minRotation: 60,
+                    autoSkip: false,  
+                    maxRotation: 60, 
+                    minRotation: 60, 
                 },
                 grid: {
                     display: false,
@@ -80,4 +91,4 @@ const LinearChart = ({ dataValues = [], dates = [] }) => {
     );
 };
 
-export default LinearChart;
+export default LinearChartGen;
