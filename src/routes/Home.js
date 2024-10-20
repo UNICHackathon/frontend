@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { Box, Typography, Container, TextField, InputAdornment, Card, CardContent } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Box, Typography, Container, Card, CardContent } from '@mui/material';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import EastIcon from '@mui/icons-material/East';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 import Balance from '@components/Balance';
 import History from '@components/History';
@@ -33,34 +33,53 @@ function Home() {
           <Box
             display="flex"
             justifyContent="space-between"
+            gap={3}
             mt={3}
           >
             <Card sx={{ height: '150px', flex: 1 }}>
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <CompareArrowsIcon fontSize="large" />
                 <Box sx={{ mt: 'auto' }}>
-                  <Typography variant="div">
-                    Transfer <EastIcon fontSize="small" />
-                  </Typography>
-                </Box>
-              </CardContent>
-            </Card>
-            <Card sx={{ height: '150px', flex: 1, mx: 3 }}>
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
-                <CreditCardIcon fontSize="large" />
-                <Box sx={{ mt: 'auto' }}>
-                  <Typography variant="div">
-                    Card details <EastIcon fontSize="small" />
+                  <Typography variant="div" sx={{ display: 'flex' }}>
+                    Transfer <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
                   </Typography>
                 </Box>
               </CardContent>
             </Card>
             <Card sx={{ height: '150px', flex: 1 }}>
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+                <CreditCardIcon fontSize="large" />
+                <Box sx={{ mt: 'auto' }}>
+                  <Typography variant="div" sx={{ display: 'flex' }}>
+                    Card details <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+            <Card sx={{ height: '150px', flex: 1 }}>
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <QrCodeScannerIcon fontSize="large" />
                 <Box sx={{ mt: 'auto' }}>
-                  <Typography variant="div">
-                    AI <EastIcon fontSize="small" />
+                  <Typography variant="div" sx={{ display: 'flex' }}>
+                    Scan QR code <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+            <Card
+              sx={{
+                color: 'white',
+                height: '150px',
+                flex: 1,
+                backgroundImage: 'url(./ai.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}>
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+                <SmartToyIcon fontSize="large" />
+                <Box sx={{ mt: 'auto' }}>
+                  <Typography variant="div" sx={{ display: 'flex' }}>
+                    AI <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
                   </Typography>
                 </Box>
               </CardContent>
@@ -69,7 +88,7 @@ function Home() {
           <TransactionsDoughnutChart />
         </Container>
         <Box width="25%">
-          <History transactions={[]} />
+          <History />
           <CurrencyConverter />
         </Box>
       </Box>
