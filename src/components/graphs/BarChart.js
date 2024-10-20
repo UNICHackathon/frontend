@@ -50,6 +50,9 @@ const BarChart = ({ dataPoints, labels }) => {
             x: {
                 ticks: {
                     display: true,
+                    autoSkip: false,
+                    maxRotation: 60,
+                    minRotation: 60, 
                 },
                 grid: {
                     display: false,
@@ -76,7 +79,7 @@ const BarChart = ({ dataPoints, labels }) => {
     };
 
     return (
-        <div style={{ width: '100%', height: '400px' }}>
+        <div style={{ width: '100%', height: '200px' }}>
             <Bar data={data} options={options} />
         </div>
     );

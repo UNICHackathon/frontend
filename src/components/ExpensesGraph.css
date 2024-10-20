@@ -1,0 +1,26 @@
+.button {
+    background-color: #403c44;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+    border-radius: 0;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+.button:active {
+    background-color: #383434;
+    transform: scale(0.90);
+}
+
+.button:focus {
+    background-color: #383434;
+}
+.button.selected {
+    background-color: #383434;
+}
