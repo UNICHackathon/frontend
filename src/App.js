@@ -1,21 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
 
 import Home from '@routes/Home';
+import Protected from '@routes/Protected';
 import Transactions from '@routes/Transactions';
 import Analytics from '@routes/Analytics';
 import Login from '@routes/Login';
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/analytics" element={<Analytics />}/>
-        <Route path="/transactions" element={<Transactions />}/>
-        <Route path="/login" element={<Login />}/>
-      </Routes>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Protected><Home /></Protected>} />
+          <Route path="/analytics" element={<Protected><Analytics /></Protected>} />
+          <Route path="/transactions" element={<Protected><Transactions /></Protected>} />
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 
