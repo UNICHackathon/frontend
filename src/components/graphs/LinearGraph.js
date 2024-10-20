@@ -20,7 +20,7 @@ const formatNumber = (num) => {
     return num;
 };
 
-const NormalLinearChart = ({ dataValues = [], dates = [] }) => {
+const NormalLinearChart = ({ dataValues = [], dates = [], size = 'small' }) => {
     const data = {
         labels: dates,
         datasets: [
@@ -69,8 +69,10 @@ const NormalLinearChart = ({ dataValues = [], dates = [] }) => {
         },
     };
 
+    const chartHeight = size === 'big' ? '400px' : '200px';
+
     return (
-        <div style={{ width: '100%', height: '200px' }}>
+        <div style={{ width: '100%', height: chartHeight }}>
             <Line data={data} options={options} />
         </div>
     );
