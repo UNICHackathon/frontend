@@ -4,6 +4,7 @@ import LinearGraphGenerative from './graphs/LinearGraphGenerative';
 import BarChart from './graphs/BarChart';
 import BarChartGenerative from './graphs/BarGraphGenerative.js';
 import './ExpensesGraph.css';
+import { Link } from "react-router-dom";
 
 function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
     const [chartType, setChartType] = useState('linear'); 
@@ -26,7 +27,7 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
         switch (selectedPeriod) {
             case 'year':
                 const yearlyDataValues = [300,250,450,350,600,700,433,550,300,163]
-                const yearlyDates = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'];
+                const yearlyDates = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
                 
                 setChartData({
                     dataValues: yearlyDataValues,
@@ -39,7 +40,7 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
                 setChartData({
                     dataValues: threeMonthsDataValues,
                     predictedData: [],
-                    dates: ['Jul', 'Ago', 'Sep'],
+                    dates: ['Jul', 'Aug', 'Sep'],
                 });
                 break;
             case 'month':
@@ -110,63 +111,65 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
     };
     
     return (
-        <Card sx={{...ContainerStyles, mt: 3 }}>
-            <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography component="div" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                    Expenses
-                </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
-                        <button 
-                            className={`button ${period === 'year' ? 'selected' : ''}`} 
-                            onClick={() => handlePeriodChange('year')}
-                        >
-                            Year
-                        </button>
-                        <button 
-                            className={`button ${period === '3months' ? 'selected' : ''}`} 
-                            onClick={() => handlePeriodChange('3months')}
-                        >
-                            3 Months
-                        </button>
-                        <button 
-                            className={`button ${period === 'month' ? 'selected' : ''}`} 
-                            onClick={() => handlePeriodChange('month')}
-                        >
-                            Month
-                        </button>
+        <Link to="/analytics">
+            <Card sx={{...ContainerStyles, mt: 3 }}>
+                <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Typography component="div" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                        Expenses
+                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
+                            <button 
+                                className={`button ${period === 'year' ? 'selected' : ''}`} 
+                                onClick={() => handlePeriodChange('year')}
+                            >
+                                Year
+                            </button>
+                            <button 
+                                className={`button ${period === '3months' ? 'selected' : ''}`} 
+                                onClick={() => handlePeriodChange('3months')}
+                            >
+                                3 Months
+                            </button>
+                            <button 
+                                className={`button ${period === 'month' ? 'selected' : ''}`} 
+                                onClick={() => handlePeriodChange('month')}
+                            >
+                                Month
+                            </button>
+                        </Box>
+                        <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
+                            <button 
+                                className={`button ${chartType === 'linear' ? 'selected' : ''}`} 
+                                onClick={() => setChartType('linear')}
+                            >
+                                <img 
+                                    src="linear-removebg-preview.png" 
+                                    alt="linear" 
+                                    style={{ height: '10px', marginRight: '1px' }}
+                                /> 
+                            </button>                
+                            <button 
+                                className={`button ${chartType === 'bar' ? 'selected' : ''}`} 
+                                onClick={() => {
+                                    setChartType('bar');
+                                    handlePeriodChange(period);
+                                }}
+                            >
+                                <img 
+                                    src="/bar-removebg-preview.png" 
+                                    alt="bar" 
+                                    style={{ height: '10px', marginRight: '2px' }} 
+                                /> 
+                            </button>                
+                        </Box>
                     </Box>
-                    <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
-                        <button 
-                            className={`button ${chartType === 'linear' ? 'selected' : ''}`} 
-                            onClick={() => setChartType('linear')}
-                        >
-                            <img 
-                                src="linear-removebg-preview.png" 
-                                alt="linear" 
-                                style={{ height: '10px', marginRight: '1px' }}
-                            /> 
-                        </button>                
-                        <button 
-                            className={`button ${chartType === 'bar' ? 'selected' : ''}`} 
-                            onClick={() => {
-                                setChartType('bar');
-                                handlePeriodChange(period);
-                            }}
-                        >
-                            <img 
-                                src="/bar-removebg-preview.png" 
-                                alt="bar" 
-                                style={{ height: '10px', marginRight: '2px' }} 
-                            /> 
-                        </button>                
-                    </Box>
-                </Box>
-            </CardContent>
-            <CardContent sx={{ p: 3, width: '96%', height: '100%', minHeight: '200px' }}>
-                {renderChart()}
-            </CardContent>
-        </Card>
+                </CardContent>
+                <CardContent sx={{ p: 3, width: '96%', height: '100%', minHeight: '200px' }}>
+                    {renderChart()}
+                </CardContent>
+            </Card>
+        </Link>
     );
 }
 
