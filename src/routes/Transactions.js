@@ -3,12 +3,12 @@ import { Typography } from '@mui/material';
 
 import Layout from '@components/Layout';
 
-function Income() {
+function Transactions() {
   return (
     <Layout>
-      <Typography variant="h4">Income</Typography>
+      <Typography variant="h4">Transactions</Typography>
     </Layout>
   );
 }
 
-export default Income;
+export default Transactions;

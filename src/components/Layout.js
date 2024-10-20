@@ -7,10 +7,9 @@ function Layout({ children }) {
 
   const buttons = [
     { label: 'Home', path: '/' },
-    { label: 'Transactions', path: '/analytics' },
+    { label: 'Transactions', path: '/transactions' },
     { label: 'Payments', path: '/payments' },
-    { label: 'Deposits', path: '/cards' },
-    { label: 'Credits', path: '/history' },
+    { label: 'Analytics', path: '/analytics' },
     { label: 'Services', path: '/services' },
     { label: 'Help', path: '/help' },
   ];

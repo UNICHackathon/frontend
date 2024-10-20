@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import {
   Box,
-  Container,
-  Typography,
-  TextField,
-  IconButton,
-  Button,
-  InputAdornment,
   ButtonGroup,
-  Menu, MenuItem
+  Container,
+  IconButton,
+  InputAdornment,
+  Menu,
+  MenuItem,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Search, ArrowBack, ArrowForward, CalendarToday, MoreVert} from '@mui/icons-material';
+import { Search, ArrowBack, ArrowForward, MoreVert } from '@mui/icons-material';
 
 import Layout from '@components/Layout';
 
-function Spending() {
+function Analytics() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -30,7 +30,7 @@ function Spending() {
     <Layout>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Container>
-          <Typography variant="h4">Spending</Typography>
+          <Typography variant="h4">Analytics</Typography>
           <Box display="flex" alignItems="center" mt={2} width="100%">
             <TextField
               variant="outlined"
@@ -78,4 +78,4 @@ function Spending() {
   );
 }
 
-export default Spending;
+export default Analytics;
