@@ -7,9 +7,9 @@ function Layout({ children }) {
 
   const buttons = [
     { label: 'Home', path: '/' },
+    { label: 'Analytics', path: '/analytics' },
     { label: 'Transactions', path: '/transactions' },
     { label: 'Payments', path: '/payments' },
-    { label: 'Analytics', path: '/analytics' },
     { label: 'Services', path: '/services' },
     { label: 'Help', path: '/help' },
   ];
