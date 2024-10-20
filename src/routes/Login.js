@@ -1,7 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 
+import { useAuth } from '../context/AuthContext';
+
 function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    login();
+    navigate('/');
+  };
+
   return (
     <Container maxWidth="sm">
       <Box
@@ -36,6 +47,7 @@ function Login() {
           size="large"
           fullWidth
           style={{ marginTop: '16px' }}
+          onClick={handleLogin}
         >
           Login
         </Button>
