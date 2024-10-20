@@ -15,7 +15,7 @@ function Brokerage() {
       </CardContent>
       <CardContent sx={{ px: 3, py: 0 }}>
         <Typography variant="h5" component="div">
-          €0.00
+          <b>€0.00</b>
         </Typography>
       </CardContent>
       <CardContent sx={{ p: 3 }}>

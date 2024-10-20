@@ -8,8 +8,8 @@ function Balance() {
         <Typography component="div">
           Current balance
         </Typography>
-        <Typography variant="h5" component="div">
-          €57,892.00
+        <Typography variant="h5" component="b">
+          <b>€57,892.00</b>
         </Typography>
         <Typography color="text.secondary">
           // list of credit cards

@@ -15,7 +15,7 @@ function Loan() {
           Real estate loan
         </Typography>
         <Typography variant="h5" component="div">
-          -€113,079.12
+          <b>-€113,079.12</b>
         </Typography>
         <Typography component="div" mt={1}>
           21 payments left
