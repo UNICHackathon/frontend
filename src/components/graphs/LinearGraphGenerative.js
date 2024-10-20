@@ -73,6 +73,7 @@ const GenerativeLinearChart = ({ dataValues = [], predictedData = [], dates = []
                     display: true,
                     callback: (value) => formatNumber(value),
                 },
+                min:0,
                 grid: {
                     display: false,
                 },

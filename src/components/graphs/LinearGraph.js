@@ -62,6 +62,7 @@ const NormalLinearChart = ({ dataValues = [], dates = [], size = 'small' }) => {
                     display: true,
                     callback: (value) => formatNumber(value),
                 },
+                min:0,
                 grid: {
                     display: false,
                 },
