@@ -16,36 +16,36 @@ const transactions = [
     id: 1,
     logo: './logos/starbucks.png',
     placeName: 'Starbucks',
-    date: '2023-10-01',
-    amount: '$5.00',
+    date: '19 October',
+    amount: '-€5.00',
   },
   {
     id: 2,
     logo: './logos/amazon.png',
     placeName: 'Amazon',
-    date: '2023-10-02',
-    amount: '$50.00',
+    date: '19 October',
+    amount: '-€50.00',
   },
   {
     id: 3,
     logo: './logos/walmart.png',
     placeName: 'Walmart',
-    date: '2023-10-03',
-    amount: '$30.00',
+    date: '19 October',
+    amount: '-€30.00',
   },
   {
     id: 4,
     logo: './logos/apple.png',
     placeName: 'Apple Store',
-    date: '2023-10-04',
-    amount: '$200.00',
+    date: '19 October',
+    amount: '-€200.00',
   },
   {
     id: 5,
     logo: './logos/mcdonalds.png',
     placeName: 'McDonald\'s',
-    date: '2023-10-05',
-    amount: '$10.00',
+    date: '17 October',
+    amount: '-€10.00',
   },
 ];
 
@@ -67,8 +67,11 @@ function History() {
               </ListItemAvatar>
               <ListItemText
                 primary={transaction.placeName}
-                secondary={`${transaction.date} - ${transaction.amount}`}
+                secondary={transaction.date}
               />
+              <ListItemAvatar>
+                {transaction.amount}
+              </ListItemAvatar>
             </ListItem>
           ))}
         </List>
