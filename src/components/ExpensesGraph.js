@@ -111,7 +111,7 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
     };
     
     return (
-        <Link to="/analytics">
+        
             <Card sx={{...ContainerStyles, mt: 3 }}>
                 <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Typography component="div" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
@@ -166,10 +166,12 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
                     </Box>
                 </CardContent>
                 <CardContent sx={{ p: 3, width: '96%', height: '100%', minHeight: '200px' }}>
+                <Link to="/analytics">
                     {renderChart()}
+                </Link>
                 </CardContent>
             </Card>
-        </Link>
+        
     );
 }
 
