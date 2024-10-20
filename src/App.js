@@ -1,18 +1,19 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+
 import Home from '@routes/Home';
-import Income from '@routes/Income';
-import Spending from '@routes/Spending';
+import Transactions from '@routes/Transactions';
+import Analytics from '@routes/Analytics';
 import Login from '@routes/Login';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/income" element={<Income />} />
-        <Route path="/spending" element={<Spending />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />}/>
+        <Route path="/analytics" element={<Analytics />}/>
+        <Route path="/transactions" element={<Transactions />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </div>
   );
