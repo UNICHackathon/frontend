@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
-import { Box, Typography, Container, Card, CardContent } from '@mui/material';
+
+import React, {useState, usEffect} from 'react';
+import { Box, Typography, Container, TextField, InputAdornment, Card, CardContent } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import EastIcon from '@mui/icons-material/East';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-
 import Balance from '@components/Balance';
 import History from '@components/History';
 import Layout from '@components/Layout';
@@ -15,8 +16,14 @@ import ExpensesGraph from "@components/ExpensesGraph";
 import Brokerage from "@components/Brokerage";
 import Loan from "@components/Loan";
 import TransactionsDoughnutChart from "@components/TransactionsDoughnutChart";
+import Modal from '@mui/material/Modal';
+import ChatBot from '@components/ChatbotUI';
 
 function Home() {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const handleOpenChatbot = () => setIsChatbotOpen(true);
+  const handleCloseChatbot = () => setIsChatbotOpen(false);
+
   return (
     <Layout>
       <Box display="flex" width="100%">
@@ -56,30 +63,12 @@ function Home() {
                 </Box>
               </CardContent>
             </Card>
-            <Card sx={{ height: '150px', flex: 1 }}>
-              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
-                <QrCodeScannerIcon fontSize="large" />
-                <Box sx={{ mt: 'auto' }}>
-                  <Typography variant="div" sx={{ display: 'flex' }}>
-                    Scan QR code <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
-                  </Typography>
-                </Box>
-              </CardContent>
-            </Card>
-            <Card
-              sx={{
-                color: 'white',
-                height: '150px',
-                flex: 1,
-                backgroundImage: 'url(./ai.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}>
-              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+            <Card sx={{ height: '150px', flex: 1 }} onClick={handleOpenChatbot}> 
+              <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <SmartToyIcon fontSize="large" />
                 <Box sx={{ mt: 'auto' }}>
-                  <Typography variant="div" sx={{ display: 'flex' }}>
-                    AI <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
+                  <Typography variant="div">
+                    ChatBot <EastIcon fontSize="small" />
                   </Typography>
                 </Box>
               </CardContent>
@@ -92,6 +81,10 @@ function Home() {
           <CurrencyConverter />
         </Box>
       </Box>
+      <ChatBot
+        isChatbotOpen={isChatbotOpen}
+        handleCloseChatbot={handleCloseChatbot}
+      />
     </Layout>
   );
 }
