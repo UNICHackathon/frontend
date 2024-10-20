@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { 
   Box, 
   TextField, 
@@ -80,8 +81,28 @@ function ChatBot({isChatbotOpen, handleCloseChatbot}) {
   }, [messages]);
 
   useEffect(() => {
+    if (isChatbotOpen) {
+      // Reset the state when the chatbot is opened
+      setMessages([]);
+      setInput('');
+      setOptions([]);
+      setCurrentStep('initial');
+    }
+  }, [isChatbotOpen]);
+
+  useEffect(() => {
     if (isChatbotOpen && messages.length === 0) {
-      botReply("Welcome to our financial chatbot! Here are some quick financial tips:\n\n1. Save at least 20% of your income\n2. Invest in a diversified portfolio\n3. Build an emergency fund\n4. Pay off high-interest debt first\n\nHow can I assist you today?", ['I need more financial advice', 'I want to buy something']);
+      botReply(`Welcome to our financial chatbot! We're here to help you manage your money and make informed decisions. Here are a few quick financial tips to get you started:
+          
+        1. Save at least 20% of your income: Consistently setting aside a portion of your earnings can help you build a solid financial cushion over time.
+
+        2. Invest in a diversified portfolio: Spread your investments across different asset classes to minimize risk and maximize potential returns.
+
+        3. Build an emergency fund: Aim to have 3-6 months' worth of living expenses saved to handle unexpected situations like medical emergencies or job loss.
+
+        4. Pay off high-interest debt first: Prioritize paying down loans or credit cards with high-interest rates to save money on interest in the long run.
+
+        How can I assist you in reaching your financial goals today?`, ['I need more financial advice', 'I want to buy something']);
     }
   }, [isChatbotOpen, messages]);
 
@@ -181,6 +202,15 @@ function ChatBot({isChatbotOpen, handleCloseChatbot}) {
     }, 1000);
   };
 
+  const formatMessage = (text) => {
+    return text.split('\n').map((line, i) => (
+      <React.Fragment key={i}>
+        {line}
+        {i !== text.split('\n').length - 1 && <br />}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <Modal
       open={isChatbotOpen}
@@ -190,8 +220,8 @@ function ChatBot({isChatbotOpen, handleCloseChatbot}) {
     >
       <Paper elevation={3} sx={styles.modal}>
         <Box sx={styles.chatbot}>
-          <Typography variant="h6" sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-            ChatBot
+          <Typography variant="h6" sx={{ p: 2, borderBottom: 1, borderColor: 'divider', textAlign: "center" }}>
+            <SmartToyIcon fontSize="large" />
           </Typography>
           <List sx={styles.messageList}>
             {messages.map((message, index) => (
@@ -201,8 +231,8 @@ function ChatBot({isChatbotOpen, handleCloseChatbot}) {
               }}>
                 <ListItemText 
                   primary={
-                    <Typography variant="body2">
-                      {message.text}
+                    <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
+                      {formatMessage(message.text)}
                     </Typography>
                   }
                 />

@@ -2,10 +2,8 @@
 
 import React, {useState, usEffect} from 'react';
 import { Box, Typography, Container, TextField, InputAdornment, Card, CardContent } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import EastIcon from '@mui/icons-material/East';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import Balance from '@components/Balance';
@@ -16,7 +14,6 @@ import ExpensesGraph from "@components/ExpensesGraph";
 import Brokerage from "@components/Brokerage";
 import Loan from "@components/Loan";
 import TransactionsDoughnutChart from "@components/TransactionsDoughnutChart";
-import Modal from '@mui/material/Modal';
 import ChatBot from '@components/ChatbotUI';
 
 function Home() {
