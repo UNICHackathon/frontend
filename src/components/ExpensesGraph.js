@@ -1,35 +1,41 @@
-import React, { useState } from 'react';
-import { Card, CardContent, Typography, Button, Box } from '@mui/material';
-import LinearChart from './graphs/LinearGraph.js'; 
+import React, { useState } from 'react';  
+import { Card, CardContent, Typography, Box } from '@mui/material';
+import LinearChartGen from './graphs/LinearGraphGenerative.js';
+import BarChart from './graphs/BarChart.js';
+import LinearChart from './graphs/LinearGraph.js';
+import './ExpensesGraph.css';
 
 function ExpensesGraph() {
-    // Estado para almacenar los datos y las fechas del gráfico
+    const [chartType, setChartType] = useState('linear'); 
+    const [period, setActivePeriod] = useState('month');
+    
     const [chartData, setChartData] = useState({
-        dataValues: [2000000, 1000, 1200000, 160000, 20000, 30000],
-        dates: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+        dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400],
+        dates: [
+            '01/10/2024', '02/10/2024', '05/10/2024', 
+            '08/10/2024', '10/10/2024', '13/10/2024', 
+            '14/10/2024', '17/10/2024', '20/10/2024'
+        ],
     });
 
-    // Función para cambiar los datos del gráfico según el periodo seleccionado
     const handlePeriodChange = (period) => {
+        setActivePeriod(period);
         switch (period) {
-            case 'thisYear':
-                // Cambia estos valores a los que correspondan para "This Year"
+            case 'year':
                 setChartData({
-                    dataValues: [300, 200, 450, 350, 600, 800], // Ejemplo de datos
-                    dates: ['Ene', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Ejemplo de fechas
+                    dataValues: [300, 200, 450, 350, 600, 800],
+                    dates: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                 });
                 break;
-            case 'last3Months':
-                // Cambia estos valores a los que correspondan para "Last 3 Months"
+            case '3months':
                 setChartData({
-                    dataValues: [400, 350, 300], // Ejemplo de datos
-                    dates: ['Apr', 'May', 'Jun'], // Ejemplo de fechas
+                    dataValues: [400, 350, 300],
+                    dates: ['Abr', 'May', 'Jun'],
                 });
                 break;
-            case 'lastMonth':
-                // Cambia estos valores a los que correspondan para "Last Month"
+            case 'month':
                 setChartData({
-                    dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400], // Ejemplo de datos
+                    dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400],
                     dates: [
                         '01/10/2024', '02/10/2024', '05/10/2024', 
                         '08/10/2024', '10/10/2024', '13/10/2024', 
@@ -41,41 +47,106 @@ function ExpensesGraph() {
                 break;
         }
     };
+    
+    const renderChart = () => {
+        switch (chartType) {
+            case 'linear':
+                return (
+                    <LinearChart 
+                        dataValues={chartData.dataValues} 
+                        dates={chartData.dates}  
+                    />
+                );
+            case 'bar':
+                return (
+                    <BarChart 
+                        dataPoints={chartData.dataValues} 
+                        labels={chartData.dates}
+                    />
+                );
+            case 'generative':
+                return (
+                    <LinearChartGen 
+                        actualData={chartData.dataValues.slice(0, 3)}
+                        predictedData={chartData.dataValues.slice(3)}
+                        dates={chartData.dates}
+                    />
+                );
+            default:
+                return null; 
+        }
+    };
 
-    const buttonStyle = {
-        borderRadius: '20px',
-        marginLeft: '10px',
-        textTransform: 'none',
-        padding: '4px 8px',
-        fontSize: '0.6rem',
+    const getTitle = () => {
+        return chartType === 'linear' ? 'Balance' : 'Expenses';
     };
 
     return (
-        <Card
-            sx={{
-                mt: 3,
-            }}
-        >
-            <CardContent sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Typography component="div" sx={{ mr: 2, fontSize: '1.2rem', fontWeight: 'bold' }}>
-                    Expenses
+        <Card sx={{ mt: 3 }}>
+            <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography component="div" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    {getTitle()}
                 </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <Button variant="outlined" sx={buttonStyle} onClick={() => handlePeriodChange('thisYear')}>This Year</Button>
-                    <Button variant="outlined" sx={buttonStyle} onClick={() => handlePeriodChange('last3Months')}>Last 3 Months</Button>
-                    <Button variant="outlined" sx={buttonStyle} onClick={() => handlePeriodChange('lastMonth')}>Last Month</Button>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
+                        <button 
+                            className={`button ${period === 'year' ? 'selected' : ''}`} 
+                            onClick={() => handlePeriodChange('year')}
+                        >
+                            Year
+                        </button>
+                        <button 
+                            className={`button ${period === '3months' ? 'selected' : ''}`} 
+                            onClick={() => handlePeriodChange('3months')}
+                        >
+                            3 Months
+                        </button>
+                        <button 
+                            className={`button ${period === 'month' ? 'selected' : ''}`} 
+                            onClick={() => handlePeriodChange('month')}
+                        >
+                            Month
+                        </button>
+                    </Box>
+                    <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
+                        <button 
+                            className={`button ${chartType === 'linear' ? 'selected' : ''}`} 
+                            onClick={() => setChartType('linear')}
+                        >
+                            <img 
+                                src="linear-removebg-preview.png" 
+                                alt="linear" 
+                                style={{ height: '10px', marginRight: '1px' }}
+                            /> 
+                        </button>                
+                        <button 
+                            className={`button ${chartType === 'bar' ? 'selected' : ''}`} 
+                            onClick={() => setChartType('bar')}
+                        >
+                            <img 
+                                src="/bar-removebg-preview.png" 
+                                alt="bar" 
+                                style={{ height: '10px', marginRight: '2px' }} 
+                            /> 
+                        </button>                
+                        <button 
+                            className={`button ${chartType === 'generative' ? 'selected' : ''}`} 
+                            onClick={() => setChartType('generative')}
+                        >
+                            <img 
+                                src="/generate-ai-icon-stars-flat-260nw-2506284183-removebg-preview.png" 
+                                alt="Generative" 
+                                style={{ height: '10px', marginRight: '5px' }}
+                            /> 
+                        </button>
+                    </Box>
                 </Box>
             </CardContent>
-            <CardContent sx={{ p: 3, width: '96%', height: '100%' }}>
-                <LinearChart 
-                    dataValues={chartData.dataValues} 
-                    dates={chartData.dates} 
-                    chartType="expenses" 
-                    size="small"
-                />
+            <CardContent sx={{ p: 3, width: '96%', height: '100%', minHeight: '200px' }}>
+                {renderChart()}
             </CardContent>
         </Card>
     );
-};
+}
 
 export default ExpensesGraph;
