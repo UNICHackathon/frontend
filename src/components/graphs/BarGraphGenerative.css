@@ -15,7 +15,7 @@
 .bar-chart-container {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 200px; /* Puedes ajustar esto según tus necesidades */
 }
 
 .bar-chart-container .bar-label {

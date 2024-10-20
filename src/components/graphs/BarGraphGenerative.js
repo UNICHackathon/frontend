@@ -1,9 +1,9 @@
 import React from 'react';   
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import ChartAnnotation from 'chartjs-plugin-annotation';
 import { Chart } from 'chart.js';
-import './LinearGraph.css';
+import './BarGraphGenerative.css';
 
 Chart.register(ChartAnnotation);
 
@@ -20,17 +20,31 @@ const formatNumber = (num) => {
     return num;
 };
 
-const NormalLinearChart = ({ dataValues = [], dates = [] }) => {
+const GenerativeBarChart = ({ dataValues = [], predictedData = [], dates = [] }) => {
+    const showPrediction = predictedData.length > 0;
+
     const data = {
         labels: dates,
         datasets: [
             {
                 label: 'Data',
                 data: dataValues,
-                fill: true,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
                 borderColor: 'rgba(75, 192, 192, 1)',
-                tension: 0.4,
+                borderWidth: 1,
+                barThickness: 20,
+                barPercentage: 1.0,
+                categoryPercentage: 1.0,
+            },
+            {
+                label: 'Prediction',
+                data: showPrediction ? Array(dataValues.length).fill(null).concat(predictedData) : [],
+                backgroundColor: 'rgba(192, 192, 192, 0.5)',
+                borderColor: 'rgba(192, 192, 192, 1)',
+                borderWidth: 1,
+                barThickness: 20,
+                barPercentage: 1.0,
+                categoryPercentage: 1.0
             },
         ],
     };
@@ -48,14 +62,11 @@ const NormalLinearChart = ({ dataValues = [], dates = [] }) => {
                 ticks: {
                     display: true,
                     autoSkip: false,
-                    maxRotation: 60,
-                    minRotation: 60,
                 },
                 grid: {
                     display: false,
-                    drawTicks: true,
-                    tickLength: 5,
                 },
+                offset: true,
             },
             y: {
                 ticks: {
@@ -71,9 +82,9 @@ const NormalLinearChart = ({ dataValues = [], dates = [] }) => {
 
     return (
         <div style={{ width: '100%', height: '200px' }}>
-            <Line data={data} options={options} />
+            <Bar data={data} options={options} />
         </div>
     );
 };
 
-export default NormalLinearChart;
+export default GenerativeBarChart;

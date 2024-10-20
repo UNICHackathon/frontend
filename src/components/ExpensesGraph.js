@@ -1,8 +1,8 @@
-import React, { useState } from 'react';  
+import React, { useState, useEffect } from 'react';   
 import { Card, CardContent, Typography, Box } from '@mui/material';
-import LinearChartGen from './graphs/LinearGraphGenerative.js';
-import BarChart from './graphs/BarChart.js';
-import LinearChart from './graphs/LinearGraph.js';
+import LinearGraphGenerative from './graphs/LinearGraphGenerative';
+import BarChart from './graphs/BarChart';
+import BarChartGenerative from './graphs/BarGraphGenerative.js';
 import './ExpensesGraph.css';
 
 function ExpensesGraph() {
@@ -11,6 +11,7 @@ function ExpensesGraph() {
     
     const [chartData, setChartData] = useState({
         dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400],
+        predictedData: [450, 420, 460],
         dates: [
             '01/10/2024', '02/10/2024', '05/10/2024', 
             '08/10/2024', '10/10/2024', '13/10/2024', 
@@ -18,28 +19,37 @@ function ExpensesGraph() {
         ],
     });
 
-    const handlePeriodChange = (period) => {
-        setActivePeriod(period);
-        switch (period) {
+
+    useEffect(() => {
+        handlePeriodChange('month');
+    }, []);
+
+    const handlePeriodChange = (selectedPeriod) => {
+        setActivePeriod(selectedPeriod);
+        switch (selectedPeriod) {
             case 'year':
                 setChartData({
                     dataValues: [300, 200, 450, 350, 600, 800],
+                    predictedData: [],
                     dates: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                 });
                 break;
             case '3months':
                 setChartData({
                     dataValues: [400, 350, 300],
+                    predictedData: [],
                     dates: ['Abr', 'May', 'Jun'],
                 });
                 break;
             case 'month':
                 setChartData({
                     dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400],
+                    predictedData: [450, 420, 460],
                     dates: [
                         '01/10/2024', '02/10/2024', '05/10/2024', 
                         '08/10/2024', '10/10/2024', '13/10/2024', 
-                        '14/10/2024', '17/10/2024', '20/10/2024'
+                        '14/10/2024', '17/10/2024', '20/10/2024', 
+                        '22/10/2024', '24/10/2024', '26/10/2024'
                     ],
                 });
                 break;
@@ -49,43 +59,49 @@ function ExpensesGraph() {
     };
     
     const renderChart = () => {
-        switch (chartType) {
-            case 'linear':
+        if (period === 'month') {
+            if (chartType === 'linear') {
                 return (
-                    <LinearChart 
+                    <LinearGraphGenerative 
                         dataValues={chartData.dataValues} 
+                        predictedData={[chartData.dataValues[chartData.dataValues.length - 1], ...chartData.predictedData]}
                         dates={chartData.dates}  
                     />
                 );
-            case 'bar':
+            } else if (chartType === 'bar') {
                 return (
-                    <BarChart 
-                        dataPoints={chartData.dataValues} 
-                        labels={chartData.dates}
-                    />
-                );
-            case 'generative':
-                return (
-                    <LinearChartGen 
-                        actualData={chartData.dataValues.slice(0, 3)}
-                        predictedData={chartData.dataValues.slice(3)}
+                    <BarChartGenerative 
+                        dataValues={chartData.dataValues} 
+                        predictedData={chartData.predictedData}
                         dates={chartData.dates}
                     />
                 );
-            default:
-                return null; 
+            }
+        } else if (chartType === 'linear') {
+            return (
+                <LinearGraphGenerative 
+                    dataValues={chartData.dataValues} 
+                    predictedData={[]} 
+                    dates={chartData.dates}  
+                />
+            );
+        } else if (chartType === 'bar') {
+            return (
+                <BarChart 
+                    dataPoints={chartData.dataValues} 
+                    labels={chartData.dates}
+                />
+            );
         }
+        return null;
     };
-
-    const getTitle = () => {
-        return chartType === 'linear' ? 'Balance' : 'Expenses';
-    };
+    
 
     return (
         <Card sx={{ mt: 3 }}>
             <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography component="div" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                    {getTitle()}
+                    Expenses
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <Box sx={{ display: 'flex', borderRadius: '20px', overflow: 'hidden', gap: 0 }}>
@@ -121,7 +137,10 @@ function ExpensesGraph() {
                         </button>                
                         <button 
                             className={`button ${chartType === 'bar' ? 'selected' : ''}`} 
-                            onClick={() => setChartType('bar')}
+                            onClick={() => {
+                                setChartType('bar');
+                                handlePeriodChange(period); // Update the chart data when changing to bar
+                            }}
                         >
                             <img 
                                 src="/bar-removebg-preview.png" 
@@ -129,16 +148,6 @@ function ExpensesGraph() {
                                 style={{ height: '10px', marginRight: '2px' }} 
                             /> 
                         </button>                
-                        <button 
-                            className={`button ${chartType === 'generative' ? 'selected' : ''}`} 
-                            onClick={() => setChartType('generative')}
-                        >
-                            <img 
-                                src="/generate-ai-icon-stars-flat-260nw-2506284183-removebg-preview.png" 
-                                alt="Generative" 
-                                style={{ height: '10px', marginRight: '5px' }}
-                            /> 
-                        </button>
                     </Box>
                 </Box>
             </CardContent>
