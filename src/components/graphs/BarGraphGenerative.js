@@ -77,12 +77,12 @@ const GenerativeBarChart = ({ dataValues = [], predictedData = [], dates = [], s
             }, 
             y: { 
                 beginAtZero: minValue >= 0, 
-                min: minValue < 0 ? minValue : undefined, 
-                max: maxValue, 
+                min: 0, 
+                max: Math.ceil(maxValue), 
                 ticks: { 
                     display: true, 
                     callback: (value) => formatNumber(value), 
-                    stepSize: step, 
+                    stepSize: Math.ceil(step), 
                 }, 
                 grid: { 
                     display: false, 

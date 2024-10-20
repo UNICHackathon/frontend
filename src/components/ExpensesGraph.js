@@ -25,32 +25,37 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
         setActivePeriod(selectedPeriod);
         switch (selectedPeriod) {
             case 'year':
+                const yearlyDataValues = [300,250,450,350,600,700,433,550,300,163]
+                const yearlyDates = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'];
+                
                 setChartData({
-                    dataValues: [1853, 1803, 2003, 1903, 2153, 2253, 1986, 2103, 1853, 1973],
+                    dataValues: yearlyDataValues,
                     predictedData: [],
-                    dates: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+                    dates: yearlyDates,
                 });
                 break;
             case '3months':
+                const threeMonthsDataValues = [433,550,300];
                 setChartData({
-                    dataValues: [2103, 1853, 1973],
+                    dataValues: threeMonthsDataValues,
                     predictedData: [],
                     dates: ['Jul', 'Ago', 'Sep'],
                 });
                 break;
             case 'month':
+                const monthlyDataValues = [ 15, 58, 25, 10, 5, 50];
+                const monthlyPredictedData = [10, 15, 100, 60, 50, 10];
+                const monthlyDates = [
+                    '05/10', '10/10', '13/10', 
+                    '17/10', '19/10', '20/10', 
+                    '23/10', '24/10', '25/10', 
+                    '26/10', '29/10', '30/10'
+                ];
+
                 setChartData({
-                    dataValues: [0, 0, 15, 0, 58, 0, 25, 10, 5, 50, 30, 200, 0],
-                    predictedData: [10, 30, 20, 15, 100, 60, 50, 10, 1553, 40, 70],
-                    dates: [
-                        '01/10/2024', '02/10/2024', '05/10/2024', 
-                        '08/10/2024', '10/10/2024', '13/10/2024', 
-                        '14/10/2024', '17/10/2024', '19/10/2024', 
-                        '20/10/2024', '21/10/2024', '22/10/2024', 
-                        '23/10/2024', '24/10/2024', '25/10/2024', 
-                        '26/10/2024', '27/10/2024', '28/10/2024', 
-                        '29/10/2024', '30/10/2024', '31/10/2024'
-                    ],
+                    dataValues: monthlyDataValues,
+                    predictedData: monthlyPredictedData,
+                    dates: monthlyDates,
                 });
                 break;
             default:
@@ -71,7 +76,7 @@ function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
                         />
                     );
                 } else {
-                    return <div>No hay datos disponibles</div>; // Mensaje de error
+                    return <div>No hay datos disponibles</div>;
                 }
             } else if (chartType === 'bar') {
                 return (

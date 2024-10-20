@@ -67,6 +67,7 @@ const BarChart = ({ dataPoints, labels, size = 'small' }) => {
                     display: true,
                     callback: (value) => formatNumber(value),
                 },
+                min:0,
                 grid: {
                     display: false,
                 },
