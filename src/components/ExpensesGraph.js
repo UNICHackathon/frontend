@@ -5,9 +5,10 @@ import BarChart from './graphs/BarChart';
 import BarChartGenerative from './graphs/BarGraphGenerative.js';
 import './ExpensesGraph.css';
 
-function ExpensesGraph() {
+function ExpensesGraph({size, ContainerStyles, GraphStyles}) {
     const [chartType, setChartType] = useState('linear'); 
     const [period, setActivePeriod] = useState('month');
+    const [chartSize, setSize] = useState('small')
 
     const [chartData, setChartData] = useState({
         dataValues: [],
@@ -17,6 +18,7 @@ function ExpensesGraph() {
 
     useEffect(() => {
         handlePeriodChange('month');
+        setSize(size)
     }, []);
 
     const handlePeriodChange = (selectedPeriod) => {
@@ -64,7 +66,8 @@ function ExpensesGraph() {
                         <LinearGraphGenerative 
                             dataValues={chartData.dataValues} 
                             predictedData={[chartData.dataValues[chartData.dataValues.length - 1], ...chartData.predictedData]}
-                            dates={chartData.dates}  
+                            dates={chartData.dates} 
+                            size={chartSize}
                         />
                     );
                 } else {
@@ -76,6 +79,7 @@ function ExpensesGraph() {
                         dataValues={chartData.dataValues} 
                         predictedData={chartData.predictedData}
                         dates={chartData.dates}
+                        size={chartSize}
                     />
                 );
             }
@@ -84,7 +88,8 @@ function ExpensesGraph() {
                 <LinearGraphGenerative 
                     dataValues={chartData.dataValues} 
                     predictedData={[]} 
-                    dates={chartData.dates}  
+                    dates={chartData.dates}
+                    size={chartSize}
                 />
             );
         } else if (chartType === 'bar') {
@@ -92,6 +97,7 @@ function ExpensesGraph() {
                 <BarChart 
                     dataPoints={chartData.dataValues} 
                     labels={chartData.dates}
+                    size={chartSize}
                 />
             );
         }
@@ -99,7 +105,7 @@ function ExpensesGraph() {
     };
     
     return (
-        <Card sx={{ mt: 3 }}>
+        <Card sx={{...ContainerStyles, mt: 3 }}>
             <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography component="div" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                     Expenses

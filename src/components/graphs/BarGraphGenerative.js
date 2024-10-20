@@ -91,7 +91,7 @@ const GenerativeBarChart = ({ dataValues = [], predictedData = [], dates = [], s
         }, 
     }; 
 
-    const chartHeight = size === 'big' ? '400px' : '200px'; 
+    const chartHeight = size === 'large' ? '100%' : '200px'; 
 
     return ( 
         <div style={{ width: '100%', height: chartHeight }}> 
