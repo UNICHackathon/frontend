@@ -34,7 +34,7 @@ function Home() {
         </Box>
         <Container sx={{ width: '50%' }}>
           <Typography variant="h4" fontSize={24}>
-            Good evening, John! 👋
+            Evening, Lia!
           </Typography>
           <ExpensesGraph />
           <Box
@@ -63,12 +63,12 @@ function Home() {
                 </Box>
               </CardContent>
             </Card>
-            <Card sx={{ height: '150px', flex: 1 }} onClick={handleOpenChatbot}> 
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+            <Card sx={{ height: '150px', flex: 1 }} onClick={handleOpenChatbot}>
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <SmartToyIcon fontSize="large" />
                 <Box sx={{ mt: 'auto' }}>
-                  <Typography variant="div">
-                    ChatBot <EastIcon fontSize="small" />
+                  <Typography variant="div" sx={{ display: 'flex' }}>
+                    ChatBot <EastIcon fontSize="small" sx={{ ml: 'auto' }} />
                   </Typography>
                 </Box>
               </CardContent>
