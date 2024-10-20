@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, AppBar, Toolbar, Button, Typography } from '@mui/material';
+import { Box, Container, AppBar, Toolbar, Button } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
 function Layout({ children }) {
@@ -36,11 +36,8 @@ function Layout({ children }) {
               </Button>
             ))}
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant="body1" sx={{ mr: 2 }}>
-              John Doe
-            </Typography>
-            <Box component="img" src="./logo.svg" alt="User Avatar" sx={{ height: 40, width: 40, borderRadius: '50%' }} />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box component="img" src="./profile.jpg" alt="User Avatar" sx={{ height: 40, width: 40, borderRadius: '50%' }} />
           </Box>
         </Toolbar>
       </AppBar>
