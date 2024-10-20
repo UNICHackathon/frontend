@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, CardContent, Typography, Box, Button} from '@mui/material';
 
-function Brokerage({ transactions }) {
+function Brokerage() {
   return (
     <Card
       sx={{
@@ -15,7 +15,7 @@ function Brokerage({ transactions }) {
       </CardContent>
       <CardContent sx={{ px: 3, py: 0 }}>
         <Typography variant="h5" component="div">
-          $ 0.00
+          €0.00
         </Typography>
       </CardContent>
       <CardContent sx={{ p: 3 }}>

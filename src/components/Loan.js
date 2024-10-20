@@ -3,9 +3,9 @@ import { Button, Card, CardContent, Typography, List, ListItem, ListItemText, Av
 
 function Loan() {
   const payments = [
-    { number: 4, date: 'October 29', amount: '$1,553.53', bgColor: '#fed403' },
-    { number: 5, date: 'November 29', amount: '$1,553.53' },
-    { number: 6, date: 'December 29', amount: '$1,553.53' },
+    { number: 4, date: 'October 29', amount: '€1,553.53', bgColor: '#fed403' },
+    { number: 5, date: 'November 29', amount: '€1,553.53' },
+    { number: 6, date: 'December 29', amount: '€1,553.53' },
   ];
 
   return (
@@ -15,7 +15,7 @@ function Loan() {
           Real estate loan
         </Typography>
         <Typography variant="h5" component="div">
-          -$ 113,000.00
+          -€113,079.12
         </Typography>
         <Typography component="div" mt={1}>
           21 payments left

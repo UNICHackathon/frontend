@@ -142,7 +142,7 @@ function TransactionsDoughnutChart() {
         <Box sx={{ position: 'relative', width: '200px', height: '200px', display: 'flex', alignItems: 'center' }}>
           <Doughnut data={filteredData} options={options} />
           <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '20px', fontWeight: 'bold' }}>
-            ${totalSum}
+            €{totalSum}
           </Box>
         </Box>
       </CardContent>

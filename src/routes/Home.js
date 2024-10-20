@@ -28,7 +28,7 @@ function Home() {
     <Layout>
       <Box display="flex" width="100%">
         <Box width="25%">
-          <Balance balance={25000} />
+          <Balance />
           <Loan />
           <Brokerage />
         </Box>
