@@ -16,7 +16,7 @@ const formatNumber = (num) => {
     return num;
 };
 
-const BarChart = ({ dataPoints, labels }) => {
+const BarChart = ({ dataPoints, labels, size = 'small' }) => {
     const data = {
         labels: labels,
         datasets: [
@@ -78,8 +78,10 @@ const BarChart = ({ dataPoints, labels }) => {
         },
     };
 
+    const chartHeight = size === 'big' ? '400px' : '200px';
+
     return (
-        <div style={{ width: '100%', height: '200px' }}>
+        <div style={{ width: '100%', height: chartHeight }}>
             <Bar data={data} options={options} />
         </div>
     );

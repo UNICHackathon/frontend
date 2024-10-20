@@ -20,7 +20,7 @@ const formatNumber = (num) => {
     return num;
 };
 
-const GenerativeLinearChart = ({ dataValues = [], predictedData = [], dates = [] }) => {
+const GenerativeLinearChart = ({ dataValues = [], predictedData = [], dates = [], size = 'small' }) => {
     const showPrediction = predictedData.length > 0;
 
     const data = {
@@ -80,8 +80,10 @@ const GenerativeLinearChart = ({ dataValues = [], predictedData = [], dates = []
         },
     };
 
+    const chartHeight = size === 'big' ? '400px' : '200px';
+
     return (
-        <div style={{ width: '100%', height: '200px' }}>
+        <div style={{ width: '100%', height: chartHeight }}>
             <Line data={data} options={options} />
         </div>
     );

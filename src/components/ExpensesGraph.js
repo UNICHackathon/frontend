@@ -8,17 +8,12 @@ import './ExpensesGraph.css';
 function ExpensesGraph() {
     const [chartType, setChartType] = useState('linear'); 
     const [period, setActivePeriod] = useState('month');
-    
-    const [chartData, setChartData] = useState({
-        dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400],
-        predictedData: [450, 420, 460],
-        dates: [
-            '01/10/2024', '02/10/2024', '05/10/2024', 
-            '08/10/2024', '10/10/2024', '13/10/2024', 
-            '14/10/2024', '17/10/2024', '20/10/2024'
-        ],
-    });
 
+    const [chartData, setChartData] = useState({
+        dataValues: [],
+        predictedData: [],
+        dates: [],
+    });
 
     useEffect(() => {
         handlePeriodChange('month');
@@ -29,27 +24,30 @@ function ExpensesGraph() {
         switch (selectedPeriod) {
             case 'year':
                 setChartData({
-                    dataValues: [300, 200, 450, 350, 600, 800],
+                    dataValues: [1853, 1803, 2003, 1903, 2153, 2253, 1986, 2103, 1853, 1973],
                     predictedData: [],
-                    dates: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    dates: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
                 });
                 break;
             case '3months':
                 setChartData({
-                    dataValues: [400, 350, 300],
+                    dataValues: [2103, 1853, 1973],
                     predictedData: [],
-                    dates: ['Abr', 'May', 'Jun'],
+                    dates: ['Jul', 'Ago', 'Sep'],
                 });
                 break;
             case 'month':
                 setChartData({
-                    dataValues: [400, 350, 250, 600, 700, 550, 300, 450, 400],
-                    predictedData: [450, 420, 460],
+                    dataValues: [0, 0, 15, 0, 58, 0, 25, 10, 5, 50, 30, 200, 0],
+                    predictedData: [10, 30, 20, 15, 100, 60, 50, 10, 1553, 40, 70],
                     dates: [
                         '01/10/2024', '02/10/2024', '05/10/2024', 
                         '08/10/2024', '10/10/2024', '13/10/2024', 
-                        '14/10/2024', '17/10/2024', '20/10/2024', 
-                        '22/10/2024', '24/10/2024', '26/10/2024'
+                        '14/10/2024', '17/10/2024', '19/10/2024', 
+                        '20/10/2024', '21/10/2024', '22/10/2024', 
+                        '23/10/2024', '24/10/2024', '25/10/2024', 
+                        '26/10/2024', '27/10/2024', '28/10/2024', 
+                        '29/10/2024', '30/10/2024', '31/10/2024'
                     ],
                 });
                 break;
@@ -61,13 +59,17 @@ function ExpensesGraph() {
     const renderChart = () => {
         if (period === 'month') {
             if (chartType === 'linear') {
-                return (
-                    <LinearGraphGenerative 
-                        dataValues={chartData.dataValues} 
-                        predictedData={[chartData.dataValues[chartData.dataValues.length - 1], ...chartData.predictedData]}
-                        dates={chartData.dates}  
-                    />
-                );
+                if (chartData.dataValues.length > 0) {
+                    return (
+                        <LinearGraphGenerative 
+                            dataValues={chartData.dataValues} 
+                            predictedData={[chartData.dataValues[chartData.dataValues.length - 1], ...chartData.predictedData]}
+                            dates={chartData.dates}  
+                        />
+                    );
+                } else {
+                    return <div>No hay datos disponibles</div>; // Mensaje de error
+                }
             } else if (chartType === 'bar') {
                 return (
                     <BarChartGenerative 
@@ -96,7 +98,6 @@ function ExpensesGraph() {
         return null;
     };
     
-
     return (
         <Card sx={{ mt: 3 }}>
             <CardContent sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -139,7 +140,7 @@ function ExpensesGraph() {
                             className={`button ${chartType === 'bar' ? 'selected' : ''}`} 
                             onClick={() => {
                                 setChartType('bar');
-                                handlePeriodChange(period); // Update the chart data when changing to bar
+                                handlePeriodChange(period);
                             }}
                         >
                             <img 
